@@ -4,3 +4,20 @@
    20  docker ps
    21  docker images
    22  curl localhost
+##lets check container run as process id or not 
+ 34  docker container run --publish 81:80 --detach --name webhost httpd
+   35  docker ps
+   36  curl localhost:81
+   
+   38  docker ps
+##this will show there are two container which is running
+##the below command will create a container but run it as foreground process 
+##to make the container as background process we need to attach --detach
+39  docker container run --publish 82:80 httpd
+###kill the container by pressing ctrl c
+   40  docker ps
+   41  docker ps -a
+###docker top command will show that your container is running as process id
+   42  docker top webhost
+##this is the linux command you can use to check the container is running as process id or not
+ps aux 
