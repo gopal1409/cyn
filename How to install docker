@@ -1,0 +1,8 @@
+##in linux we need to be an root user 
+sudo -i
+########go to this site 
+https://docs.docker.com/engine/install/ubuntu/
+####copy step1 and paste it once completed copy step 2
+
+###after that 
+docker --version
