@@ -1,0 +1,6 @@
+##lets create our first container 
+  sudo -i
+   19  docker container run --publish 80:80 --detach nginx
+   20  docker ps
+   21  docker images
+   22  curl localhost
