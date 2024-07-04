@@ -1,0 +1,34 @@
+  81  apt install default-jdk
+   82  java --version
+   83  apt install maven
+   84  git clone https://github.com/gopal1409/maven-hello.git
+   85  cd maven-hello/
+   86  mvn clean package
+   87  cd target/
+   88  ls
+   89  java -jar demo-0.0.1-SNAPSHOT.jar
+    ##press ctrl c to come out
+   90  cd ..
+    ############lets convert the application into an container based image
+      91  nano dockerfile
+####inside the docker file we will put our instruction
+FROM adoptopenjdk/openjdk11:latest
+WORKDIR /app
+RUN apt-get update -y
+COPY target/*.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","/app.jar"]
+
+###to save the file press ctrl x then press y and enter
+##lets build it
+#-t is tag once docker build the image the name will be tag name
+  92  docker build -t helloapp .
+   93  docker ps
+   ##this will show you the docker image
+   94  docker images
+   ##lets execute the image and build an container
+   95  docker run -p 82:8080 -d helloapp
+   96  docker ps
+   ###this will give you hello world
+   97  curl localhost:82
+
