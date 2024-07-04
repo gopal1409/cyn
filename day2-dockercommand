@@ -2,3 +2,25 @@
    48  docker container run --publish 81:80 --detach --name test nginx
    49  docker ps
    50  curl localhost:81
+####checking docker networking 
+55  ip a
+##it will show you the bridge networking created by docker 
+   56  docker ps
+####this below command will show at the end there is an ip allocated to your container change the container id
+   57  docker container inspect 90c
+   58  ip a
+   ##internally multiple container can run on same port
+   
+   61  docker container run -d nginx
+   62  docker ps
+   63  docker container run -d nginx
+##check both the container run on the same port internally
+   64  docker ps
+##check the docker networking
+   65  docker network ls
+###this will show all your container are getting an ip from your bridge network
+   66  docker network inspect bridge
+   68  docker ps
+##lets create another container with the same expose por it will never be up 
+##as expose port need to be unique
+   69  docker run -p 81:80 -d nginx
