@@ -22,6 +22,8 @@ ENTRYPOINT ["java","-jar","/app.jar"]
 ###to save the file press ctrl x then press y and enter
 ##lets build it
 #-t is tag once docker build the image the name will be tag name
+ls
+rm Dockerfile
   92  docker build -t helloapp .
    93  docker ps
    ##this will show you the docker image
