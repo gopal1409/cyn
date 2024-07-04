@@ -1,0 +1,4 @@
+##lets expose an application and access in a browser
+   48  docker container run --publish 81:80 --detach --name test nginx
+   49  docker ps
+   50  curl localhost:81
