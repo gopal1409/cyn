@@ -1,0 +1,5 @@
+##run this command in master which will give the join command
+ kubeadm token create --print-join-command --ttl 0
+   ##copy the output of this command and paste the same in the worker node
+   ##then go back to master run 
+   kubectl get nodes
