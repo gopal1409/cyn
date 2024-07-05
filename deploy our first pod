@@ -4,3 +4,7 @@
    22  kubectl apply -f my-firstpod.yml
    23  kubectl get pod
    24  kubectl describe pod my-first-pod
+
+28  kubectl expose pod my-first-pod --type=NodePort --port=80 --name=my-first-service
+   29  kubectl get svc
+
