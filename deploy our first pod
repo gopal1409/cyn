@@ -1,0 +1,6 @@
+  19  kubectl run my-first-pod --image=nginx --port=80 --dry-run=client -o yaml > my-firstpod.yml
+   20  ls
+   21  cat my-firstpod.yml
+   22  kubectl apply -f my-firstpod.yml
+   23  kubectl get pod
+   24  kubectl describe pod my-first-pod
