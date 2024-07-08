@@ -19,3 +19,58 @@ spec:
 ##lets create the postgress service
    77  kubectl apply -f postgresvc.yml
    78  kubectl get svc
+##lets deploy an stateful pod 
+97  nano postgress.yml
+###########statefulset
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgress
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+  serviceName: postgress #this need to be attached with your statefuleset
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: myapp
+        image: postgres
+        env:
+          - name: POSTGRES_USER
+
+            value: postgres
+          - name: POSTGRES_PASSWORD
+            value: postgres
+        ports:
+        - containerPort: 5432
+          name: web
+
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      storageClassName: "local-path"
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+
+   98  kubectl apply -f postgress.yml
+##check statefulset creating three pod
+   99  kubectl get statefulset
+##this will show the logs of the pod
+  100  kubectl get pod
+##the above one show all the pod is in order
+##check the storage
+kubectl get pvc
+##all the volumes are created in an order
+########################
+delete a pod will recreate it with same name
+kubectl delete pod postgress-1
+kubectl get pod
+  101  kubectl logs postgress-0
