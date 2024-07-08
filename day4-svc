@@ -14,3 +14,10 @@
    62  kubectl describe deploy nginx-deploy
 ##this will show the ip address of the pod verify the same in the browser in round robin fashion this is moving
    63  kubectl get pod -o wide
+##rollback to previous release
+ 66  kubectl get rs
+###get more information about the revision
+   67  kubectl rollout history deploy nginx-deployment --revision=1
+   68  kubectl rollout history deploy nginx-deployment --revision=2
+##to roll back to previous revision
+   69  kubectl rollout undo deploy nginx-deployment --to-revision=1
