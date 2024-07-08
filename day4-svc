@@ -1,0 +1,8 @@
+ 50  kubectl get deploy
+   #when we expose the deployment it will autmatically map it with your endpoint
+   51  kubectl expose deploy nginx-deployment --type=NodePort --port=80 --name=nginx-service
+   52  kubectl get svc
+   ###check the service end point is mapped to your pod
+   53  kubectl describe svc nginx-service
+   #####this will give you the pod ip which is matching
+   54  kubectl get pod -o wide
