@@ -1,0 +1,21 @@
+##lets create the dynamic provisioner
+  kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.28/deploy/local-path-storage.yaml
+##check the local storage class
+  kubectl get sc
+  ##we will creaste a service for the stafulset
+     76  nano postgresvc.yml
+  ######
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgress
+spec:
+  ports:
+    - name: postgress
+      port: 5432
+  clusterIP: None
+  selector:
+    app: postgress
+##lets create the postgress service
+   77  kubectl apply -f postgresvc.yml
+   78  kubectl get svc
