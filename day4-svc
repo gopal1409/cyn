@@ -6,3 +6,11 @@
    53  kubectl describe svc nginx-service
    #####this will give you the pod ip which is matching
    54  kubectl get pod -o wide
+##lets update the deployment
+###provide the deployment name modify the nameofthe image and put the new image you want to update
+ 60  kubectl set image deploy nginx-deployment nginx=nulldevil/phpsysinfo --record
+   61  kubectl get deploy
+####describe deploiy envent logs will show 
+   62  kubectl describe deploy nginx-deploy
+##this will show the ip address of the pod verify the same in the browser in round robin fashion this is moving
+   63  kubectl get pod -o wide
