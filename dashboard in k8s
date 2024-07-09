@@ -23,6 +23,7 @@ subjects:
   namespace: kubernetes-dashboard
 
   #save the file using ctrl x y and enter
+kubectl apply -f user.yml
     292  kubectl edit svc kubernetes-dashboard --namespace kubernetes-dashboard
   ##it will open the file in vi editor
   ##press Esc i
