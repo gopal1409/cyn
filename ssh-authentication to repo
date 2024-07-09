@@ -1,0 +1,20 @@
+##first we will clone an maven project. 
+#lets configure some global varaible
+ 114  git config --global user.name "gopal"
+  115  git config --global user.email "gopal1409@gmail.com"
+##we are cloning one of the maven project
+ 118  git clone https://github.com/spring-projects/spring-petclinic.git
+  119  cd spring-petclinic/
+  ##we will remove the git project refrence
+  120  rm -rf .git
+  ##do reinsitalized 
+  121  git init
+  122  git add .
+  123  git commit -m "pet clinic project"
+  124  git status
+  ##this will show me the version
+  125  git log
+  ##we will generate ssh key public and private
+  126  ssh-keygen -t rsa
+  ##this will show me the public key i need to copy the same and upload the same in azure repo
+  127  cat /root/.ssh/id_rsa.pub
