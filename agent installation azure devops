@@ -7,3 +7,7 @@
     7  tar zxvf vsts-agent-linux-x64-3.241.0.tar.gz
     8  ls
    ###you will see the agent configuration file
+##we will install maven and openjdk
+ 15  sudo apt install default-jdk
+   16  sudo apt install maven
+###install this two packages
