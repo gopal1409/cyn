@@ -1,0 +1,9 @@
+ 1  exit
+   ##check that you are not a root user
+    3  mkdir myagent && cd myagent
+    
+    5  sudo apt install unzip
+    6  wget https://vstsagentpackage.azureedge.net/agent/3.241.0/vsts-agent-linux-x64-3.241.0.tar.gz
+    7  tar zxvf vsts-agent-linux-x64-3.241.0.tar.gz
+    8  ls
+   ###you will see the agent configuration file
