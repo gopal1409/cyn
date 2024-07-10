@@ -42,5 +42,16 @@ stages:
               pmdRunAnalysis: true
               findBugsRunAnalysis: true
               spotBugsRunAnalysis: true
-          
+            continueOnError: true
+          - task: CopyFiles@2
+            displayName: copy the artifact
+            inputs:
+              Contents: '**'
+              TargetFolder: '$(Build.ArtifactStagingDirectory)'
+          - task: PublishBuildArtifacts@1
+            displayName: publish the artifact
+            inputs:
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+              ArtifactName: 'drop'
+              publishLocation: 'Container'
           
