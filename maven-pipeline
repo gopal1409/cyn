@@ -25,4 +25,22 @@ stages:
               mavenAuthenticateFeed: false
               effectivePomSkip: false
               sonarQubeRunAnalysis: false
+          - task: Maven@4
+            displayName: testing the code
+            inputs:
+              mavenPomFile: 'pom.xml'
+              goals: 'test'
+              publishJUnitResults: true
+              testResultsFiles: '**/surefire-reports/TEST-*.xml'
+              codeCoverageToolOption: 'JaCoCo'
+              javaHomeOption: 'JDKVersion'
+              mavenVersionOption: 'Default'
+              mavenAuthenticateFeed: false
+              effectivePomSkip: false
+              sonarQubeRunAnalysis: false
+              checkStyleRunAnalysis: true
+              pmdRunAnalysis: true
+              findBugsRunAnalysis: true
+              spotBugsRunAnalysis: true
+          
           
