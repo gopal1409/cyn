@@ -49,6 +49,8 @@ stages:
               containerRegistry: dockernew
               repository: $(imageRepository)
               command: 'push'
+              tags: 
+                $(tag)
           
           
           
