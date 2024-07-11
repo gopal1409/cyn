@@ -1,0 +1,54 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master 
+
+
+pool: default
+  #vmImage: ubuntu-latest
+variables:
+  containerRegistryServiceConnection: dockernew
+  imageRepository: gopalcri.azurecr.io/app/petapp
+  tag: 1.0.0
+stages:
+  - stage: build
+    jobs:
+      - job: build
+        steps:
+          - task: Maven@4
+            displayName: maven build
+            inputs:
+              mavenPomFile: 'pom.xml'
+              publishJUnitResults: false
+              javaHomeOption: 'JDKVersion'
+              mavenVersionOption: 'Default'
+              mavenAuthenticateFeed: false
+              effectivePomSkip: false
+              sonarQubeRunAnalysis: false
+              goals: "package"
+          - task: Docker@2
+            displayName: checking docker login
+            inputs:
+              containerRegistry: dockernew
+              command: 'login'
+          - task: Docker@2
+            displayName: build the image
+            inputs:
+              containerRegistry: dockernew
+              repository: $(imageRepository)
+              command: 'build'
+              Dockerfile: dockerfile
+              tags: |
+                $(tag)
+          - task: Docker@2
+            displayName: push to repo
+            inputs:
+              containerRegistry: dockernew
+              repository: $(imageRepository)
+              command: 'push'
+          
+          
+          
