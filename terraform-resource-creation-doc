@@ -1,2 +1,20 @@
 ##lets pull the code 
-lets creaste the service principal and store those information inside the vm using environment varaibles. 
+##lets creaste the service principal and store those information inside the vm using environment varaibles. 
+az ad sp create-for-rbac -n "terraform" --role contributor --scope /subscriptions/d6e3e878-9e0a-4bb0-af2c-bf2cd7b6f7e3
+##to create teh service princiapl open cloud shell and do it. 
+###the value you got from the service principal store the same in a notepad
+##replace the value 
+export ARM_CLIENT_ID="00000000-0000-0000-0000-000000000000"
+export ARM_CLIENT_SECRET="12345678-0000-0000-0000-000000000000"
+export ARM_TENANT_ID="10000000-0000-0000-0000-000000000000"
+export ARM_SUBSCRIPTION_ID="20000000-0000-0000-0000-000000000000"
+###once replaced paste it in the machine where you have the terraform script located
+##clone the terraform script
+176  git clone https://github.com/gopal1409/cyna-azure-terraform.git
+  177  cd cyna-azure-terraform/
+####do terraform init and apply
+terraform init
+terraform apply
+####apply will ask for yes just type yes
+#then it will create the resource
+##check the same in the cloud
