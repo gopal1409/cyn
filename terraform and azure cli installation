@@ -1,0 +1,6 @@
+##this will install terraform
+https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
+##next we need to install azure cli
+ 172  curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+##to verify
+  173  az
