@@ -1,0 +1,12 @@
+sudo -i
+285  cd cyna-azure-terraform/
+  286  ls
+  287  rm -rf .git
+  288  ls -la
+  289  rm -rf .terraform
+  290  git init
+  291  git add .
+  292  git commit -m "terraform project"
+#below this command you will get it from azure repo
+  293  git remote add origin git@ssh.dev.azure.com:v3/gopal1409/terraform-cicd/terraform-cicd
+  294  git push -u origin --all
