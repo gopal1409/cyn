@@ -1,0 +1,10 @@
+  261  cd cyna-azure-terraform/
+  262  git pull
+  263  ls
+  264  clear
+  265  ls
+  266  ls -la
+  267  rm -rf .terraform
+  268  rm -rf terraform.tfstate
+  269  rm -rf terraform.tfstate.backup
+  270  rm -rf .terraform.lock.hcl
