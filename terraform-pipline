@@ -28,4 +28,68 @@ stages:
             backendAzureRmStorageAccountName: 'terraformtfstategd'
             backendAzureRmContainerName: 'tfstate'
             backendAzureRmKey: 'tfstate'
+        - task: TerraformTaskV4@4
+          displayName: validate the syntax
+          inputs:
+            provider: 'azurerm'
+            command: 'validate' 
+  - stage: tfplan
+    jobs: 
+      - job: plan
+        steps:
+        - task: TerraformInstaller@1
+          displayName: installing terraform
+          inputs:
+            terraformVersion: 'latest'
+        - task: TerraformTaskV2@2
+          displayName: Install terraform
+          inputs:
+            provider: 'azurerm'
+            command: 'init'
+            backendServiceArm: 'adocon'
+            backendAzureRmResourceGroupName: 'terraformstorage'
+            backendAzureRmStorageAccountName: 'terraformtfstategd'
+            backendAzureRmContainerName: 'tfstate'
+            backendAzureRmKey: 'tfstate'
+        - task: TerraformTaskV4@4
+          displayName: planining mars
+          inputs:
+            provider: 'azurerm'
+            command: 'plan'
+            environmentServiceNameAzureRM: 'adocon'   
+  - stage: tfapproval
+    jobs: 
+      - job: approval 
+        pool: server
+        steps:
+          - task: ManualValidation@1
+            inputs:
+              notifyUsers: 'gopal1409@gmail.com'
+              instructions: 'approve this'
+  - stage: tfapply
+    jobs: 
+      - job: apply
+        
+        steps:
+        - task: TerraformInstaller@1
+          displayName: installing terraform
+          inputs:
+            terraformVersion: 'latest'
+        - task: TerraformTaskV2@2
+          displayName: Install terraform
+          inputs:
+            provider: 'azurerm'
+            command: 'init'
+            backendServiceArm: 'adocon'
+            backendAzureRmResourceGroupName: 'terraformstorage'
+            backendAzureRmStorageAccountName: 'terraformtfstategd'
+            backendAzureRmContainerName: 'tfstate'
+            backendAzureRmKey: 'tfstate'
+        - task: TerraformTaskV4@4
+          displayName: reach mars
+          inputs:
+            provider: 'azurerm'
+            command: 'apply'
+            environmentServiceNameAzureRM: 'adocon'
+  
         
