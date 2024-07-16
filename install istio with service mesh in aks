@@ -10,6 +10,6 @@ export CLUSTER=demoaks
 export RESOURCE_GROUP=demogroup
 export LOCATION=eastus
 ##lets create the resource group
-az aks create --resource-group ${RESOURCE_GROUP} --name ${CLUSTER} --enable-asm --generate-ssh-keys
+az group create --name ${RESOURCE_GROUP} --location ${LOCATION}
 ##lets create teh cluster
 az aks create --resource-group ${RESOURCE_GROUP} --name ${CLUSTER} --enable-asm --generate-ssh-keys --node-vm-size=standard_b2pls_v2
