@@ -1,0 +1,15 @@
+##check the version os istio
+ az aks mesh get-revisions --location eastus -o table
+ 
+Revision    Upgrades        CompatibleWith    CompatibleVersions
+----------  --------------  ----------------  ----------------------------
+asm-1-20    asm-1-21        kubernetes        1.25, 1.26, 1.27, 1.28, 1.29
+asm-1-21    asm-1-22        kubernetes        1.26, 1.27, 1.28, 1.29, 1.30
+#####create some environment variables
+export CLUSTER=demoaks
+export RESOURCE_GROUP=demogroup
+export LOCATION=eastus
+##lets create the resource group
+az aks create --resource-group ${RESOURCE_GROUP} --name ${CLUSTER} --enable-asm --generate-ssh-keys
+##lets create teh cluster
+az aks create --resource-group ${RESOURCE_GROUP} --name ${CLUSTER} --enable-asm --generate-ssh-keys --node-vm-size=standard_b2pls_v2
