@@ -86,3 +86,6 @@ spec:
         host: reviews.qa.svc.cluster.local
       weight: 20
 EOF
+
+#3once completed delete the cluster from cloud shell
+az aks delete --name demoaks --resource-group=demogroup
