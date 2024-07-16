@@ -13,3 +13,25 @@ export LOCATION=eastus
 az group create --name ${RESOURCE_GROUP} --location ${LOCATION}
 ##lets create teh cluster
 az aks create --resource-group ${RESOURCE_GROUP} --name ${CLUSTER} --enable-asm --generate-ssh-keys --node-vm-size=standard_b2pls_v2
+##we will create two deployment and expose them using cluster ip
+gopal1409@gmail.com> kubectl create ns test
+namespace/test created
+
+gopal1409@gmail.com> kubectl -n test create deploy nginx1 --image=nginx:1.27 --port=80
+deployment.apps/nginx1 created
+
+gopal1409@gmail.com> kubectl -n test expose deploy nginx1 --port=80
+service/nginx1 exposed
+
+gopal1409@gmail.com> kubectl -n test create deploy nginx2 --image=nginx:1.27.0 --port=80
+deployment.apps/nginx2 created
+
+
+
+gopal1409@gmail.com> kubectl -n test expose deploy nginx2 --port=80
+service/nginx2 exposed
+
+##check both the service is deployment with two different version of deployment
+kubectl -n test get all
+##lets deploy the ingress in the particular namespace
+kubectl label namespace test istio.io/rev=asm-1-21
