@@ -26,7 +26,25 @@ service/nginx1 exposed
 gopal1409@gmail.com> kubectl -n test create deploy nginx2 --image=nginx:1.27.0 --port=80
 deployment.apps/nginx2 created
 
-
+##lets create the network gateway\
+kubectl apply -f - <<EOF
+apiVersion: networking.istio.io/v1
+kind: Gateway
+metadata:
+  name: my-gateway
+  namespace: test
+spec:
+  selector:
+    app: my-gateway-controller
+  servers:
+  - hosts:
+    -  'default.svc.cluster.local'
+    port:
+      number: 80
+      name: http
+      protocol: HTTP
+EOF
+######################
 
 gopal1409@gmail.com> kubectl -n test expose deploy nginx2 --port=80
 service/nginx2 exposed
