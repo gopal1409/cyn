@@ -53,3 +53,36 @@ service/nginx2 exposed
 kubectl -n test get all
 ##lets deploy the ingress in the particular namespace
 kubectl label namespace test istio.io/rev=asm-1-21
+##lets do split traffic
+kubectl apply -f - <<EOF
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: bookinfo-rule
+  namespace: test
+spec:
+  hosts:
+  - demo.svc.cluster.local
+  
+  gateways:
+  - demoapp-gateway
+  - mesh # applies to all the sidecars in the mesh
+  http:
+  - match:
+    
+    route:
+    - destination:
+        port:
+          number: 80
+        host: nginx1.default.svc.cluster.local
+  
+    route:
+    - destination:
+        port:
+          number: 80 # can be omitted if it's the only port for reviews
+        host: nginx2.default.svc.cluster.local
+      weight: 80
+    - destination:
+        host: reviews.qa.svc.cluster.local
+      weight: 20
+EOF
