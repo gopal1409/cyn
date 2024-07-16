@@ -1,0 +1,6 @@
+#this agent installation need to be done using normal user
+exit
+51  mkdir terraformagent
+   52  cd terraformagent/
+   53  wget https://vstsagentpackage.azureedge.net/agent/3.241.0/vsts-agent-linux-x64-3.241.0.tar.gz
+   54  tar zxvf vsts-agent-linux-x64-3.241.0.tar.gz
